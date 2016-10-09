@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta charset="utf-8" />
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		<title>React Native 小实例 采用View布局如下视图</title>
+	</head>
+<body>
+<h2>React Native 小实例 采用View布局如下视图</h2>
+
+<figure><img src="4BF6E92F-C5B3-4877-8CC0-6E2060E190C3.png"/></figure>
+
+<h2>实例步骤</h2>
+
+<h3>1.加载View组件</h3>
+
+<pre><code>import React, { Component } from &#39;react&#39;;
+import {
+  AppRegistry,
+  StyleSheet,
+  Text,
+  View
+} from &#39;react-native&#39;;
+import中添加View组件
+</code></pre>
+
+<h3>2.创建组件</h3>
+
+<pre><code>class FirstRN extends Component { //继承方式
+  render() { //渲染
+    return (
+      &lt;View style={styles.container}&gt;
+      &lt;/View&gt;
+    );
+  }
+}
+</code></pre>
+
+<h3>3.添加样式表</h3>
+
+<pre><code>const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    borderWidth:1,
+    borderColor:&#39;red&#39;,
+    flexDirection:&#39;row&#39;,
+    //backgroundColor: &#39;#0f0&#39;,
+  },
+  item: {
+    flex: 1,
+    height:80,
+    borderWidth:1,
+    borderColor:&#39;blue&#39;,
+  },
+});
+</code></pre>
+
+<h3>4.注册入口</h3>
+
+<pre><code>AppRegistry.registerComponent(&#39;FirstRN&#39;, () =&gt; FirstRN);
+</code></pre>
+
+<h3>5.外层布局</h3>
+
+<pre><code>&lt;View style={styles.container}&gt;
+&lt;/View&gt;
+</code></pre>
+
+<h3>6. flex box水平三栏布局</h3>
+
+<ul>
+	<li>外联样式: style={styles.container} </li>
+	<li>内联样式: style={{flex:1,borderWidth:1}} </li>
+	<li>多个样式: style={[styles.container,{flex:1,borderWidth:1}]} </li>
+</ul>
+
+<h3>7.完善效果及整体代码</h3>
+
+<pre><code>import React, { Component } from &#39;react&#39;;
+import {
+  AppRegistry,
+  StyleSheet,
+  PixelRatio,
+  Text,
+  View
+} from &#39;react-native&#39;;
+
+class FirstRN extends Component {
+  render() {
+    return (
+      &lt;View style={styles.flex}&gt;
+       &lt;View style={styles.container}&gt;
+          &lt;View style={[styles.item,styles.center]}&gt;
+            &lt;Text style={styles.font}&gt;酒店&lt;/Text&gt;
+          &lt;/View&gt;
+          &lt;View style={[styles.item, styles.lineLeftRight]}&gt;
+            &lt;View style={[styles.flex, styles.center, styles.lineCenter]}&gt;
+              &lt;Text style={styles.font}&gt;海外酒店&lt;/Text&gt;
+            &lt;/View&gt;
+            &lt;View style={[styles.flex, styles.center]}&gt;
+              &lt;Text style={styles.font}&gt;特惠酒店&lt;/Text&gt;
+            &lt;/View&gt;
+          &lt;/View&gt;
+          &lt;View style={[styles.item, styles.lineLeftRight]}&gt;
+             &lt;View style={[styles.flex, styles.center,styles.lineCenter]}&gt;
+              &lt;Text style={styles.font}&gt;团购&lt;/Text&gt;
+            &lt;/View&gt; 
+            &lt;View style={[styles.flex, styles.center]}&gt;
+              &lt;Text style={styles.font}&gt;客栈,公寓&lt;/Text&gt;
+            &lt;/View&gt;
+          &lt;/View&gt;
+        &lt;/View&gt;
+      &lt;/View&gt;
+    );
+  }
+}
+
+const styles = StyleSheet.create({
+  container: {
+    marginTop: 200,
+    marginLeft: 5,
+    marginRight: 5,
+    height: 85,
+    flexDirection: &#39;row&#39;,
+    borderRadius: 5,
+    padding: 2,
+    backgroundColor: &#39;#FF0067&#39;,
+  },
+  item: {
+    flex: 1,
+    height: 80,
+  },
+  center: {
+    justifyContent: &#39;center&#39;,
+    alignItems: &#39;center&#39;
+  },
+  flex: {
+    flex: 1,
+  },
+  font: {
+    color: &#39;#fff&#39;,
+    fontSize: 16,
+    fontWeight: &#39;bold&#39;,
+  },
+  lineLeftRight: {
+    borderLeftWidth: 1/PixelRatio.get(),
+    borderRightWidth: 1/PixelRatio.get(),//自带函数
+    borderColor: &#39;#fff&#39;,
+  },
+  lineCenter: {
+    borderBottomWidth: 1/PixelRatio.get(),
+    borderColor: &#39;#fff&#39;,
+  },
+});
+
+AppRegistry.registerComponent(&#39;FirstRN&#39;, () =&gt; FirstRN);
+</code></pre>
+
+<ul>
+	<li>最终结果如下</li>
+	<li><figure><img src="03DB4AE0-1009-4884-A159-A5F9D7CA2A18.png"/></figure></li>
+</ul>
+
+</body>
+</html>
+
